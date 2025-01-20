@@ -106,3 +106,8 @@ En cualquier caso:
 
 Básicamente, es como una librería de Python, usa el 2 y el 3.
 
+Voy a ver que se haya descargado:
+
+```
+ansible --version
+```
