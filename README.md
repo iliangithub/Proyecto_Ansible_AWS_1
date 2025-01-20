@@ -77,3 +77,13 @@ Entonces, cuando yo vuelva a:
 ssh -i "ansible.pem" ubuntu@ec2-34-228-37-255.compute-1.amazonaws.com
 ```
 
+> [!TIP]
+>Sin embargo, el fingerprint que almacene dependerá de la máquina de AWS y de su configuración en ese momento. Si la máquina no ha cambiado su configuración o clave SSH (por ejemplo, no se ha renovado la clave del servidor de la instancia de AWS), el fingerprint debería ser el mismo que el anterior. Si la instancia de AWS se ha reiniciado o ha sido reemplazada, o si AWS ha cambiado la clave SSH, el fingerprint podría ser distinto.
+>
+>En resumen:
+>
+>Si la clave SSH de la máquina de AWS no ha cambiado, el fingerprint será el mismo.
+Si la clave ha cambiado (por ejemplo, si la máquina de AWS fue reemplazada o se ha cambiado la clave SSH), el fingerprint será diferente.
+>
+
+Ansible hace pues un proceso similar para conectarse a las máquinas.
