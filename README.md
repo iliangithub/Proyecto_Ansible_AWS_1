@@ -70,3 +70,10 @@ Voy a eliminar el contenido del fichero.
 ```
 cat /dev/null > ~/.ssh/known_hosts
 ```
+
+Entonces, cuando yo vuelva a:
+
+```
+ssh -i "ansible.pem" ubuntu@ec2-34-228-37-255.compute-1.amazonaws.com
+```
+
