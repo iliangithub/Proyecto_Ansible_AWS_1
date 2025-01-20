@@ -18,10 +18,10 @@ Voy a desplegar una máquina con Ansible en AWS, que me permita controlar de for
 
 # Instancia EC2 de Ansible.
 
-- Nombre: `Ansible_control_EC2`
-- AMI: `Ubuntu Server 22.04 LTS (HVM), SSD Volume Type`
-- Tipo de instancia: `t2.micro`
-- Crear un nuevo par de claves (RSA, .pem)
+- Nombre: `Ansible_control_EC2`.
+- AMI: `Ubuntu Server 22.04 LTS (HVM), SSD Volume Type`.
+- Tipo de instancia: `t2.micro`.
+- Crear un nuevo par de claves (RSA, .pem).
 
 **Editamos la configuración de red:**
 - ![image](https://github.com/user-attachments/assets/8884a75c-1307-4378-9c9c-802c6c5e192b)
@@ -29,5 +29,20 @@ Voy a desplegar una máquina con Ansible en AWS, que me permita controlar de for
 y ya. La creamos.
 
 # Instancias (3) EC2 de CentOs.
-- AMI: `CentOS Stream 9 (x86_64)`
-- Tipo de instancia: `t2.micro`
+- Número de instancias: `3`.
+- Nombre: `servidores_de_ansible`.
+- AMI: `CentOS Stream 9 (x86_64)`.
+- Tipo de instancia: `t2.micro`.
+- Par de clave: `cliente`,`RSA`,`.pem`.
+
+Editamos igualmente la configuración de red:
+
+![image](https://github.com/user-attachments/assets/ffe8a2c7-1c4d-4255-9669-8ae45d41285b)
+
+La primera regla es que desde mi IP pueda hacer ssh para conectarme a la instancia y la otra que el pueda conectarse desde la máquina de Ansible (he puesto Ansible_SG)
+
+Una vez creadas, les voy a cambiar el nombre:
+
+![image](https://github.com/user-attachments/assets/1b64d87e-58e8-4434-8323-d6f96e32bcff)
+
+manualmente.
