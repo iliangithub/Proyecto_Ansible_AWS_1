@@ -103,3 +103,6 @@ En cualquier caso:
 >```
 > sudo apt update && sudo apt install -y software-properties-common && sudo add-apt-repository --yes --update ppa:ansible/ansible && sudo apt install -y ansible
 >```
+
+Básicamente, es como una librería de Python, usa el 2 y el 3.
+
