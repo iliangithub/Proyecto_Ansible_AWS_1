@@ -48,3 +48,6 @@ Una vez creadas, les voy a cambiar el nombre:
 manualmente.
 
 ## 2.3 Instalar Ansible en la máquina.
+
+Estas máquinas ya tienen SSH, todas. Voy a acceder a Ansible_Control_EC2
+
