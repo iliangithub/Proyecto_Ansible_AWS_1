@@ -1,4 +1,4 @@
-# Introducción Ansible.
+# 1.0 Introducción Ansible.
 
 Ansible, no es un servicio, usa los módulos de Python, los scripts de Python para conectarse a la máquina y verter el código, y devolver un output.
 
@@ -12,11 +12,11 @@ Y también en el Playbook hay otro componente de la arquitectura Ansible, que so
 
 Luego, Ansible utilizará la "Ansible config" y crear el script de Python, y luego pues se ejecutará.
 
-# El proyecto.
+# 2.0 El proyecto.
 
 Voy a desplegar una máquina con Ansible en AWS, que me permita controlar de forma remota.
 
-# Instancia EC2 de Ansible.
+## 2.1 Instancia EC2 de Ansible.
 
 - Nombre: `Ansible_control_EC2`.
 - AMI: `Ubuntu Server 22.04 LTS (HVM), SSD Volume Type`.
@@ -28,7 +28,7 @@ Voy a desplegar una máquina con Ansible en AWS, que me permita controlar de for
 
 y ya. La creamos.
 
-# Instancias (3) EC2 de CentOs.
+## 2.2 Instancias (3) EC2 de CentOs.
 - Número de instancias: `3`.
 - Nombre: `servidores_de_ansible`.
 - AMI: `CentOS Stream 9 (x86_64)`.
@@ -46,3 +46,5 @@ Una vez creadas, les voy a cambiar el nombre:
 ![image](https://github.com/user-attachments/assets/1b64d87e-58e8-4434-8323-d6f96e32bcff)
 
 manualmente.
+
+## 2.3 Instalar Ansible en la máquina.
