@@ -64,3 +64,9 @@ Cuando yo vuelva a hacer SSH no nos lo volverá a pedir, eso, es porque hay un f
 Voy a mostrar el fichero para que lo pueda leer:
 
 ![image](https://github.com/user-attachments/assets/a07259e8-9360-4f45-9ae2-11ba3e144156)
+
+Voy a eliminar el contenido del fichero.
+
+```
+cat /dev/null > ~/.ssh/known_hosts
+```
