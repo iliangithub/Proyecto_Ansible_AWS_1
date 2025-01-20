@@ -51,3 +51,16 @@ manualmente.
 
 Estas máquinas ya tienen SSH, todas. Voy a acceder a Ansible_Control_EC2
 
+Es importante recalcar, que cada vez que hagamos SSH a nuestra instancia EC2, nos preguntará:
+
+`Are you sure you want to continue conecting (yes/no[fingerprint])?`
+
+Esto significa que básicamente nos muestra el ID de la máquina, SHA256: xxxxxxxxx.
+
+Cuando yo vuelva a hacer SSH no nos lo volverá a pedir, eso, es porque hay un fichero que almacena esas fingerprints.
+
+![image](https://github.com/user-attachments/assets/b59262e0-b28c-492e-80a1-84532f11fdd9)
+
+Voy a mostrar el fichero para que lo pueda leer:
+
+![image](https://github.com/user-attachments/assets/a07259e8-9360-4f45-9ae2-11ba3e144156)
