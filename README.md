@@ -87,3 +87,14 @@ ssh -i "ansible.pem" ubuntu@ec2-34-228-37-255.compute-1.amazonaws.com
 >
 
 Ansible hace pues un proceso similar para conectarse a las máquinas.
+
+En cualquier caso, ya estaremos dentro de la máquina de Ansible, así que vamos a buscar Ansible download.
+
+Tenemos la opción de hacerlo usando Python:
+https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#pipx-install
+
+En cualquier caso:
+
+>[!IMPORTANT]
+>Este es el importante:
+>https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html
