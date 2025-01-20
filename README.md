@@ -1,4 +1,4 @@
-# Introducción Ansible
+# Introducción Ansible.
 
 Ansible, no es un servicio, usa los módulos de Python, los scripts de Python para conectarse a la máquina y verter el código, y devolver un output.
 
