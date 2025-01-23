@@ -124,11 +124,11 @@ https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
 
 1. **¿En qué ruta debe de estar el archivo de ruta?**
 
-![image](https://github.com/user-attachments/assets/5fbb0644-33da-4f7b-a7c7-f1c1d68f6c96)
->
-> Si usamos el `ansible --version` podemos ver en qué ruta se ha instalado... `/etc/ansible` entonces. La ruta del inventario tiene que estar allí, **según la documentación**.
->
-> ![image](https://github.com/user-attachments/assets/94cbc56e-c39d-40a2-8159-1599e483ce95)
+  ![image](https://github.com/user-attachments/assets/5fbb0644-33da-4f7b-a7c7-f1c1d68f6c96)
+
+  Si usamos el `ansible --version` podemos ver en qué ruta se ha instalado... `/etc/ansible` entonces. La ruta del inventario tiene que estar allí, **según la documentación**.
+
+  ![image](https://github.com/user-attachments/assets/94cbc56e-c39d-40a2-8159-1599e483ce95)
 >
 > Entonces, el directorio existe y el archivo también:
 >
