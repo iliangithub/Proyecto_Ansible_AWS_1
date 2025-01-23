@@ -138,11 +138,12 @@ https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
    ¿Cómo hago para usar ese inventario en la ruta alternativa?**
    
    Como por defecto Ansible mira el /etc/ansible/hosts. En el comando de ejecución, vamos a poner `-i` quedaría algo así:
+
    ```
    ansible-playbook example.yml -i /ruta_alternativa/inventory
    ```
 
-3. Teoría: ¿Qué tipo de archivo puede ser el archivo inventario?
+4. Teoría: ¿Qué tipo de archivo puede ser el archivo inventario?
    - Inventario Dinámico.
    - YAML o YML.
    - Texto plano, .ini.
