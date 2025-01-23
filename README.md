@@ -134,5 +134,11 @@ https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
 > ![image](https://github.com/user-attachments/assets/3553c7ab-28b0-48a9-9b4f-9880486c98be)
 
 >[!WARNING]
->**Entonces, como he creado una carpeta para que contenga el inventario**
+>**Entonces, como he creado una carpeta para que contenga el inventario, pues voy a poner allí el inventario (Lo puedo llamar como yo quiera, no se tiene que llamar Hosts**
+>
+>Como por defecto Ansible mira el /etc/ansible/hosts. En el comando de ejecución, vamos a poner `-i` quedaría algo así:
+>
+>```
+>ansible-playbook example.yml -i /ruta_alternativa/inventory
+>```
 >
