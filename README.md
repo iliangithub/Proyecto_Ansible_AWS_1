@@ -134,10 +134,60 @@ https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
    ![image](https://github.com/user-attachments/assets/3553c7ab-28b0-48a9-9b4f-9880486c98be)
 
 
-2. **Entonces, como he creado una carpeta para que contenga el inventario, pues voy a poner allí el inventario (Lo puedo llamar como yo quiera, no se tiene que llamar Hosts**
+2. **Entonces, como he creado una carpeta para que contenga el inventario, pues voy a poner allí el inventario (Lo puedo llamar como yo quiera, no se tiene que llamar Hosts)
+   ¿Cómo hago para usar ese inventario en la ruta alternativa?**
    
    Como por defecto Ansible mira el /etc/ansible/hosts. En el comando de ejecución, vamos a poner `-i` quedaría algo así:
    ```
    ansible-playbook example.yml -i /ruta_alternativa/inventory
+   ```
+
+3. Teoría: ¿Qué tipo de archivo puede ser el archivo inventario?
+   - Inventario Dinámico.
+   - YAML o YML.
+   - Texto plano, .ini.
+
+   Inventario Dinámico:
+   ```
+   ansible-inventory -i my_dinamic_inventory.py --list
+   
+   ```
+
+   Formato YAML o YML:
+   ```
+   all:
+      hosts:
+         web01:
+            ansible_host: 172.31.31.178
+            ansible_user: ec2-user
+            ansible_ssh_private_key_file:
+         web02:
+   
+   ```
+
+   Inventario texto plano .ini (Es la que está por defecto el el `/etc/ansible/hosts`):
+   ```
+   #comentario
+   #los espacios en blanco los ignoran
+   host1 ansible_host=192.168.1.11
+   ansible_user=usuario1
+
+   host2 ansible_host=192.168.1.12
+   ansible_user=usuario1
+    
+   ansible_port=2222
+   ansible_user=usuario2
+   
+   [webservers]
+   host1
+   host2
+
+   [databases]
+   db1 ansible_host=192.168.1.20
+   ansible_user=dbadmin
+
+   [databases:vars]
+   ansible_python_interpreter=/usr/bin/python3
+   env=production
    ```
 
