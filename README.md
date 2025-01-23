@@ -113,6 +113,14 @@ ansible --version
 ```
 
 ## 2.4 Crear Inventario.
+Recordemos, que el inventario, no es más que un fichero en el que se almacenan los Hosts a los que se les va a aplicar
 
 Entonces, ahora voy a crear un directorio en el que voy a poner el inventario.
-`mkdir prueba_ansible`
+`mkdir prueba_ansible`.
+
+https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
+
+> [!TIP]
+> ¿En qué ruta debe de estar el archivo de ruta?
+> ![image](https://github.com/user-attachments/assets/5fbb0644-33da-4f7b-a7c7-f1c1d68f6c96)
+> 
