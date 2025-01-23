@@ -151,7 +151,6 @@ https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
    Inventario Dinámico:
    ```
    ansible-inventory -i my_dinamic_inventory.py --list
-   
    ```
 
    Formato YAML o YML:
