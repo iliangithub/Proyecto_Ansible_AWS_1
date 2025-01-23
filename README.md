@@ -111,3 +111,8 @@ Voy a ver que se haya descargado:
 ```
 ansible --version
 ```
+
+## 2.4 Crear Inventario.
+
+Entonces, ahora voy a crear un directorio en el que voy a poner el inventario.
+`mkdir prueba_ansible`
