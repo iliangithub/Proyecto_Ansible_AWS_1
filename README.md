@@ -133,4 +133,6 @@ https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
 >
 > ![image](https://github.com/user-attachments/assets/3553c7ab-28b0-48a9-9b4f-9880486c98be)
 
-
+>[!WARNING]
+>**Entonces, como he creado una carpeta para que contenga el inventario**
+>
