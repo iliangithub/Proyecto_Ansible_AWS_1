@@ -112,7 +112,7 @@ Voy a ver que se haya descargado:
 ansible --version
 ```
 
-## 2.4 Crear Inventario.
+## 2.4 Crear Inventario. (Y cosas relacionadas con el inventario).
 Recordemos, que el inventario, no es más que un fichero en el que se almacenan los Hosts a los que se les va a aplicar
 
 Entonces, ahora voy a crear un directorio en el que voy a poner el inventario.
