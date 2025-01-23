@@ -143,7 +143,7 @@ https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
    ansible-playbook example.yml -i /ruta_alternativa/inventory
    ```
 
-4. Teoría: ¿Qué tipo de archivo puede ser el archivo inventario?
+3. **Teoría: ¿Qué tipo de archivo puede ser el archivo inventario?**
    - Inventario Dinámico.
    - YAML o YML.
    - Texto plano, .ini.
