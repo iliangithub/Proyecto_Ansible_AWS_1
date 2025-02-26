@@ -204,7 +204,7 @@ y este comando lo he modificado A MIS preferencias, porque anteriormente en "nom
 
 Si utilizo estos dos comandos, no va a funcionar: `mount /dev/sdd1 /mnt/tmp` o `mount /dev/sdd /mnt/tmp`
 
-voy a poner este comando, para ```lsblk```
+voy a poner este comando, para `lsblk`
 
 Output:
 ```
@@ -223,3 +223,7 @@ xvdd     202:48   0    8G  0 disk
 ├─xvdd15 202:63   0  106M  0 part
 └─xvdd16 259:1    0  913M  0 part
 ```
+
+Entonces, el volumen está identificado como xvdd y su partición principal es xvdd1.
+Esto se debe a que, aunque en AWS, haya puesto nombre de dispositivo `sdd`, como son versiones de Ubuntu más recientes pues se utiliza esta otra nomenclatura.
+
