@@ -171,8 +171,12 @@ para que se inserte todo. Para entrar en modo insertar, lo primero que haremos e
 Listo, el cliente tiene que estar encendido.
 
 ```
-ansible servidor_de_ansible 01 -m ping
+ansible servidor_de_ansible01 -m ping
 ```
+
+Tenemos el primer error:
+
+![image](https://github.com/user-attachments/assets/a4b67499-1804-4b1f-9ab0-6a0b14ecb3bd)
 
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
