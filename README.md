@@ -49,7 +49,7 @@ manualmente.
 
 ## 2.3 Instalar Ansible en la máquina.
 
-Estas máquinas ya tienen SSH, todas. Voy a acceder a Ansible_Control_EC2
+Estas máquinas ya tienen SSH, todas. **Voy a acceder a Ansible_Control_EC2**
 
 Es importante recalcar, que cada vez que hagamos SSH a nuestra instancia EC2, nos preguntará:
 
@@ -86,7 +86,7 @@ ssh -i "ansible.pem" ubuntu@ec2-34-228-37-255.compute-1.amazonaws.com
 >- Si la clave ha cambiado (por ejemplo, si la máquina de AWS fue reemplazada o se ha cambiado la clave SSH), el fingerprint será diferente.
 >
 
-Ansible hace pues un proceso similar para conectarse a las máquinas.
+**Ansible hace pues un proceso similar para conectarse a las máquinas.**
 
 En cualquier caso, ya estaremos dentro de la máquina de Ansible, así que vamos a buscar Ansible download.
 
