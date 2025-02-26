@@ -265,3 +265,17 @@ Pero esta vez, muy importante, recordemos que "nombre de dispositivo" antes ten�
 
 
 ![image](https://github.com/user-attachments/assets/a3b7bb55-0acc-4613-955d-c2d241c80c41)
+
+eso es todo, ahora solo tenemos que iniciar la instancia y comprobar que efectivamente ha funcionado.
+
+Si me voy a conectar...
+
+El comando está compuesto por `ssh -i "el nombre anterior del archivo clave"`
+
+Eso NO es lo que queremos, nosotros queremos usar el .pem nuevo, de la otra máquina de rescate, pues ya está, solo modificamos el comando anterior y ya:
+
+`ssh -i "rescate.pem" ubuntu@ec2-44-223-xxx-xxx.compute-1.amazonaws.com`.
+
+Como podemos comprobar hemos podido acceder efectivamente a la máquina:
+
+![image](https://github.com/user-attachments/assets/69c54f3c-d37c-43f7-aea1-ae4deadc2740)
