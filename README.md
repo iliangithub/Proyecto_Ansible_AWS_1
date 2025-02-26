@@ -147,7 +147,33 @@ Y el usuario, pues tenemos que buscar la AMI oficial que nos hemos suscrito o he
 
 ![image](https://github.com/user-attachments/assets/e6eda012-3c7f-4f27-b32a-97a9442d6acc)
 
-el usuario es `ec2-user`
+el usuario es `ec2-user`. Como es evidente, si hay usuario, nos hará falta también la contraseña.
+
+Aunque todavía no la tengamos, recordemos que no vamos a utilizar "ansible_password".
+Está totalmente prohibido.
+
+La contraseña es el .pem que creamos anteriormente con la instancia, `cliente_2` o cliente. Entonces, voy a copiarla y pegarla dentro de la instancia.
+
+```
+cat cliente_2.pem
+```
+
+copiamos el resultado.
+
+![image](https://github.com/user-attachments/assets/62f8eda5-df14-4f02-b69f-9a032bc76ee9)
+
+Creamos el fichero que habíamos puesto en el inventario. Y como vemos, **estoy usando vim**
+para que se inserte todo. Para entrar en modo insertar, lo primero que haremos es presionar `i`.
+
+- Para salir, ESC 
+- y luego :wq + ENTER
+
+Listo, el cliente tiene que estar encendido.
+
+```
+ansible servidor_de_ansible 01 -m ping
+```
+
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
 En resumen, formatee el ordenador y me he quedado sin las claves. No hay forma de cambiar el par-clave de la instancia, tampoco podemos contactar con Amazon en caso de que se nos pierda. Es en teoría imposible.
