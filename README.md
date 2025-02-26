@@ -115,6 +115,7 @@ ansible --version
 ## 2.4 Crear Inventario. (Y cosas relacionadas con el inventario).
 >[!TIP]
 >Recordemos, que el inventario, no es más que un fichero en el que se almacenan los Hosts a los que se les va a aplicar los comandos o lo que sea.
+>
 >Y también recordemos que el inventario puede estar en 3 formatos diferentes:
 >  - Inventario Dinámico.
 >  - YAML o YML.
