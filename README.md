@@ -113,82 +113,17 @@ ansible --version
 ```
 
 ## 2.4 Crear Inventario. (Y cosas relacionadas con el inventario).
-Recordemos, que el inventario, no es más que un fichero en el que se almacenan los Hosts a los que se les va a aplicar
+>[!TIP]
+>Recordemos, que el inventario, no es más que un fichero en el que se almacenan los Hosts a los que se les va a aplicar los comandos o lo que sea.
+>Y también recordemos que el inventario puede estar en 3 formatos diferentes:
+>  - Inventario Dinámico.
+>  - YAML o YML.
+>  - Texto plano, .ini.
 
 Entonces, ahora voy a crear un directorio en el que voy a poner el inventario.
 `mkdir prueba_ansible`.
 
 https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
 
-### 2.4.2 Teoría sobre los inventarios (cortito).
 
-1. **¿En qué ruta debe de estar el archivo de ruta?**
-
-   ![image](https://github.com/user-attachments/assets/5fbb0644-33da-4f7b-a7c7-f1c1d68f6c96)
-
-   Si usamos el `ansible --version` podemos ver en qué ruta se ha instalado... `/etc/ansible` entonces. La ruta del inventario tiene que estar allí, **según la documentación**.
-
-   ![image](https://github.com/user-attachments/assets/94cbc56e-c39d-40a2-8159-1599e483ce95)
-
-   Entonces, el directorio existe y el archivo también:
-
-   ![image](https://github.com/user-attachments/assets/3553c7ab-28b0-48a9-9b4f-9880486c98be)
-
-
-2. **Entonces, como he creado una carpeta para que contenga el inventario, pues voy a poner allí el inventario (Lo puedo llamar como yo quiera, no se tiene que llamar Hosts)
-   ¿Cómo hago para usar ese inventario en la ruta alternativa?**
-   
-   Como por defecto Ansible mira el /etc/ansible/hosts. En el comando de ejecución, vamos a poner `-i` quedaría algo así:
-
-   ```
-   ansible-playbook example.yml -i /ruta_alternativa/inventory
-   ```
-
-3. **Teoría: ¿Qué tipo de archivo puede ser el archivo inventario?**
-   - Inventario Dinámico.
-   - YAML o YML.
-   - Texto plano, .ini.
-
-   Inventario Dinámico:
-   ```
-   ansible-inventory -i my_dinamic_inventory.py --list
-   ```
-
-   Formato YAML o YML:
-   ```
-   all:
-      hosts:
-         web01:
-            ansible_host: 172.31.31.178
-            ansible_user: ec2-user
-            ansible_ssh_private_key_file:
-         web02:
-   
-   ```
-
-   Inventario texto plano .ini (Es la que está por defecto el el `/etc/ansible/hosts`):
-   ```
-   #comentario
-   #los espacios en blanco los ignoran
-   host1 ansible_host=192.168.1.11
-   ansible_user=usuario1
-
-   host2 ansible_host=192.168.1.12
-   ansible_user=usuario1
-    
-   ansible_port=2222
-   ansible_user=usuario2
-   
-   [webservers]
-   host1
-   host2
-
-   [databases]
-   db1 ansible_host=192.168.1.20
-   ansible_user=dbadmin
-
-   [databases:vars]
-   ansible_python_interpreter=/usr/bin/python3
-   env=production
-   ```
 
