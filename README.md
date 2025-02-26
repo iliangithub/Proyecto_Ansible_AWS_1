@@ -161,3 +161,11 @@ Nos vamos a volúmenes:
 
 ![image](https://github.com/user-attachments/assets/a5ddaffe-2800-4bdd-85e3-2d70c59496fd)
 
+Una vez lo desasocie, voy a asociarlo, pero con la máquina de rescate.
+
+![image](https://github.com/user-attachments/assets/57dc26e7-052a-412a-a913-fb671276a2a7)
+
+![image](https://github.com/user-attachments/assets/26fcc287-c5d3-4208-85fe-70295aadae43)
+
+En nombre de dispositivo:
+
