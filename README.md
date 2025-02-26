@@ -143,6 +143,13 @@ us-east-1b` y mi otra máquina en otro, no funcionará.
 
 Entonces, creo la máquina de rescate, sin más. Voy a también darle nombre a los volúmenes:
 
+**PASO 1:**
+
 ![image](https://github.com/user-attachments/assets/856a1c80-3b74-4070-b454-1cfbe5be4e3f)
+
+**********************************
+
+**PASO 2:**
+
 ![image](https://github.com/user-attachments/assets/9206944c-5171-468d-86fd-556a8400878f)
 
