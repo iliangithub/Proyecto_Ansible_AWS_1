@@ -106,7 +106,9 @@ ansible --version
 >  - Texto plano, .ini.
 
 Entonces, ahora voy a crear un directorio en el que voy a poner el inventario.
-`mkdir prueba_ansible`.
+```
+mkdir prueba_ansible
+```
 
 https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
 
