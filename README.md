@@ -112,14 +112,43 @@ mkdir prueba_ansible
 
 https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
 
-Es importante saber, que hay variables:
+Es importante saber, que hay variables que componen el inventario:
 - ansible_host.
 - ansible_port.
 - ansible_user.
 - ansible_password. (ESTO NO SE UTILIZA NUNCA, JAMÁS).
 - ansible_ssh_private_key_file. (Lo que SI, vamos a utilizar).
 
-### 1.4.1 Problema con el que me he topado, pérdida de las claves .pem .
+Voy a crear otra subcarpeta y el inventario en sí, porque vamos a hacer bastantes inventarios.
+Y recordemos, que puedo ponerle el nombre que quiera al inventario:
+
+```
+ubuntu@ip-172-31-22-134:~$ cd prueba_ansible/
+ubuntu@ip-172-31-22-134:~/prueba_ansible$ mkdir ejercicio1
+ubuntu@ip-172-31-22-134:~/prueba_ansible$ cd ejercicio1
+ubuntu@ip-172-31-22-134:~/prueba_ansible/ejercicio1$ nano inventario
+```
+************************
+
+**Dentro del inventario:**
+
+Si miramos UN POCO hacia arriba, veremos las variables. `ansible_host` y `ansible_user`.
+Necesitamos saber la IP de la máquina y el nombre de usuario.
+
+![image](https://github.com/user-attachments/assets/ea03a478-f715-4fa5-8cb1-382a76395137)
+
+Así está quedando el inventario, vamos a buscar los datos.
+
+La IP va a ser evidentemente la privada:
+
+![image](https://github.com/user-attachments/assets/d023355e-0cf0-401b-b28e-973f8e1ccb98)
+
+Y el usuario, pues tenemos que buscar la AMI oficial que nos hemos suscrito o hemos contratado.
+
+![image](https://github.com/user-attachments/assets/e6eda012-3c7f-4f27-b32a-97a9442d6acc)
+
+el usuario es `ec2-user`
+# 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
 En resumen, formatee el ordenador y me he quedado sin las claves. No hay forma de cambiar el par-clave de la instancia, tampoco podemos contactar con Amazon en caso de que se nos pierda. Es en teoría imposible.
 
