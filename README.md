@@ -183,5 +183,5 @@ En nombre de dispositivo:
 >   - `/dev/sda1`, `/dev/sda2`, etc.: Son particiones dentro de un disco.
 >
 > Entonces, en nombre de dispositivo te dice que:
-> - `/dev/sda1` ya está siendo utilizado, bueno, pues elijo el `/dev/sdb` y no pasa nada.
->   
+> - `/dev/sda1` ya está siendo utilizado, bueno, pues elijo el `/dev/sdd` y no pasa nada.
+> - Es más, si tu pruebas con el /dev/sdb, no te va a funcionar aunque no aparezca como que no está disponible.
