@@ -238,4 +238,9 @@ mount /dev/xvdd1 /mnt/tmp
 >Ni idea. ChatGPT lo usa porque sí.
 >
 
-Una vez montado, voy a copiar el fichero `./.ssh/authorized_keys`
+Una vez montado, voy a copiar el fichero `./.ssh/authorized_keys` DEL VOLUMEN DE RESCATE, hacia el afectado.
+
+```
+cp ./.ssh/authorized_keys /mnt/tmp/home/ubuntu/.ssh/authorized_keys
+```
+
