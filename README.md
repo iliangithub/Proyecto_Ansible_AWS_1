@@ -24,7 +24,7 @@ Voy a desplegar una máquina con Ansible en AWS, que me permita controlar de for
 - Crear un nuevo par de claves (RSA, .pem).
 
 **Editamos la configuración de red:**
-- ![image](https://github.com/user-attachments/assets/8884a75c-1307-4378-9c9c-802c6c5e192b)
+  ![image](https://github.com/user-attachments/assets/8884a75c-1307-4378-9c9c-802c6c5e192b)
 
 y ya. La creamos.
 
