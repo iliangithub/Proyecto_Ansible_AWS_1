@@ -125,8 +125,24 @@ Yo aquí tengo varias opciones:
 - Eliminar las instancias y crearlas de nuevo.
 - Acceder AL VOLUMEN de la máquina y editar un fichero.
 
-Entonces, en este volumen, habrá un fichero: `.shh/authorized_keys`.
+>[!IMPORTANT]
+>Entonces, en este volumen, habrá un fichero: `.shh/authorized_keys`.
+>Y para resumirlo mucho, en efecto, tenemos que acceder al volumen ¿Cómo?
+>
+>1. Tenemos que apagar la máquina afectada, la que no tenemos el par-clave.
+>2. Hacer otra instancia, de rescate.
+>3. Desacoplar el volumen de la máquina afectada, y conectarlo a la instancia de rescate.
+>4. Editar el fichero en cuestión para añadirle el par de clave.
+>5. Una vez editado, acoplamos de nuevo el volumen con el fichero editado con la instancia afectada.
 
+**Para colmo, he terminado la instancia sin querer** Ya que me he puesto con este reto. Voy a hacerlo, terminarlo y demostrar que se puede.
 
+**Es importante, que los dos estén en la misma zona de disponibilidad**.
+Es decir, que si mi máquina está en `Zona de disponibilidad
+us-east-1b` y mi otra máquina en otro, no funcionará.
 
+Entonces, creo la máquina de rescate, sin más. Voy a también darle nombre a los volúmenes:
+
+![image](https://github.com/user-attachments/assets/856a1c80-3b74-4070-b454-1cfbe5be4e3f)
+![image](https://github.com/user-attachments/assets/9206944c-5171-468d-86fd-556a8400878f)
 
