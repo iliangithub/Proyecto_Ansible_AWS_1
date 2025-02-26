@@ -133,7 +133,16 @@ Es importante saber, que hay variables:
 - ansible_password. (ESTO NO SE UTILIZA NUNCA, JAMÁS).
 - ansible_ssh_private_key_file. (Lo que SI, vamos a utilizar).
 
-## 2.4.1 Crear el inventario en sí.
+## 2.4.1 Problema con el que me he topado, pérdida de las claves .pem .
 
-El nombre del inventario se puede llamar de cualquier manera, yo lo voy a llamar:
+En resumen, formatee el ordenador y me he quedado sin las claves. No hay forma de cambiar el par-clave de la instancia, tampoco podemos contactar con Amazon en caso de que se nos pierda. Es en teoría imposible.
+
+Yo aquí tengo varias opciones:
+- Eliminar las instancias y crearlas de nuevo.
+- Acceder AL VOLUMEN de la máquina y editar un fichero.
+
+Entonces, en este volumen, habrá un fichero: `.shh/authorized_keys`.
+
+
+
 
