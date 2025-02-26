@@ -227,3 +227,15 @@ xvdd     202:48   0    8G  0 disk
 Entonces, el volumen está identificado como xvdd y su partición principal es xvdd1.
 Esto se debe a que, aunque en AWS, haya puesto nombre de dispositivo `sdd`, como son versiones de Ubuntu más recientes pues se utiliza esta otra nomenclatura.
 
+Finalmente se usa este comando:
+
+```
+mount /dev/xvdd1 /mnt/tmp
+```
+
+>[!TIP]
+>¿Porqué se usa `tmp` en vez de `temp`?
+>Ni idea. ChatGPT lo usa porque sí.
+>
+
+Una vez montado, voy a copiar el fichero `./.ssh/authorized_keys`
