@@ -204,8 +204,10 @@ y este comando lo he modificado A MIS preferencias, porque anteriormente en "nom
 
 Si utilizo estos dos comandos, no va a funcionar: `mount /dev/sdd1 /mnt/tmp` o `mount /dev/sdd /mnt/tmp`
 
+voy a poner este comando, para ```lsblk```
+
+Output:
 ```
-root@ip-172-31-19-88:/home/ubuntu# lsblk
 NAME     MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 loop0      7:0    0 26.3M  1 loop /snap/amazon-ssm-agent/9881
 loop1      7:1    0 73.9M  1 loop /snap/core22/1722
