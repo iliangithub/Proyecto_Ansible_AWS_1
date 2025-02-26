@@ -179,8 +179,9 @@ En nombre de dispositivo:
 >Es básicamente la nomenclatura de las particiones, volumenes, etc...
 >En linux, no se usa esa "nomenclatura", usa otra:
 >
-> - /dev/sda, /dev/sdb, etc.: Representan discos físicos
->   - /dev/sda1, /dev/sda2, etc.: Son particiones dentro de un disco.
+> - `/dev/sda`, `/dev/sdb`, etc.: Representan discos físicos
+>   - `/dev/sda1`, `/dev/sda2`, etc.: Son particiones dentro de un disco.
 >
 > Entonces, en nombre de dispositivo te dice que:
->
+> - `/dev/sda1` ya está siendo utilizado, bueno, pues elijo el `/dev/sdb` y no pasa nada.
+>   
