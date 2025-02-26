@@ -185,3 +185,39 @@ En nombre de dispositivo:
 > Entonces, en nombre de dispositivo te dice que:
 > - `/dev/sda1` ya está siendo utilizado, bueno, pues elijo el `/dev/sdd` y no pasa nada.
 > - Es más, si tu pruebas con el /dev/sdb, no te va a funcionar aunque no aparezca como que no está disponible.
+
+Ahora ya tenemos dos disco duros/volumenes a una misma instancia. Vamos a conectarnos...
+Voy a abrir la terminal de Gitbash desde el escritorio, que es donde tengo la clave .pem de la máquina de rescate.
+
+https://codigoencasa.com/aws-recuperar-llave-pem-curso-aws/
+
+Ya estoy dentro de la máquina y ahora voy a hacer una carpeta de montaje de este nuevo volumen.
+Hemos conectado a la máquina, pero no está montado.
+
+`sudo su`
+
+```
+mkdir /mnt/tmp
+```
+
+y este comando lo he modificado A MIS preferencias, porque anteriormente en "nombre de dispostivo, pusimos `/dev/sdd`".
+
+Si utilizo estos dos comandos, no va a funcionar: `mount /dev/sdd1 /mnt/tmp` o `mount /dev/sdd /mnt/tmp`
+
+```
+root@ip-172-31-19-88:/home/ubuntu# lsblk
+NAME     MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+loop0      7:0    0 26.3M  1 loop /snap/amazon-ssm-agent/9881
+loop1      7:1    0 73.9M  1 loop /snap/core22/1722
+loop2      7:2    0 44.4M  1 loop /snap/snapd/23545
+xvda     202:0    0    8G  0 disk
+├─xvda1  202:1    0    7G  0 part /
+├─xvda14 202:14   0    4M  0 part
+├─xvda15 202:15   0  106M  0 part /boot/efi
+└─xvda16 259:0    0  913M  0 part /boot
+xvdd     202:48   0    8G  0 disk
+├─xvdd1  202:49   0    7G  0 part
+├─xvdd14 202:62   0    4M  0 part
+├─xvdd15 202:63   0  106M  0 part
+└─xvdd16 259:1    0  913M  0 part
+```
