@@ -173,3 +173,14 @@ Una vez lo desasocie, voy a asociarlo, pero con la máquina de rescate.
 
 En nombre de dispositivo:
 
+>[!TIP]
+>Esto es un concepto interesante a explicar, básicamente en Windows las unidades de almacenamiento o particiones, usan nombres como `C: `, `E: `, `D: `.
+>
+>Es básicamente la nomenclatura de las particiones, volumenes, etc...
+>En linux, no se usa esa "nomenclatura", usa otra:
+>
+> - /dev/sda, /dev/sdb, etc.: Representan discos físicos
+>   - /dev/sda1, /dev/sda2, etc.: Son particiones dentro de un disco.
+>
+> Entonces, en nombre de dispositivo te dice que:
+>
