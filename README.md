@@ -225,7 +225,11 @@ xvdd     202:48   0    8G  0 disk
 ```
 
 Entonces, el volumen está identificado como xvdd y su partición principal es xvdd1.
-Esto se debe a que, aunque en AWS, haya puesto nombre de dispositivo `sdd`, como son versiones de Ubuntu más recientes pues se utiliza esta otra nomenclatura.
+Esto se debe a que, aunque en AWS haya puesto nombre de dispositivo `sdd`, como son versiones de Ubuntu más recientes pues se utiliza esta otra nomenclatura.
+
+Literalmente lo que pone en el AWS:
+
+![image](https://github.com/user-attachments/assets/4ee67dc4-da76-492b-8dd6-cc11d435f64a)
 
 Finalmente se usa este comando:
 
@@ -256,3 +260,8 @@ Apago la máquina, me vuelvo a volúmenes y voy a desaociar el volumen ese y lo 
 
 **PASO 6**
 ![image](https://github.com/user-attachments/assets/3e95acb3-963e-439e-a635-43322a1b5f8b)
+
+Pero esta vez, muy importante, recordemos que "nombre de dispositivo" antes tenía reservado el `/dev/sda1`, estaba ocupado porque allí estaba antes su volumen, ahora, evidentemente, no tiene nada, ningún volumen, pues lo pondremos allí.
+
+
+![image](https://github.com/user-attachments/assets/a3b7bb55-0acc-4613-955d-c2d241c80c41)
