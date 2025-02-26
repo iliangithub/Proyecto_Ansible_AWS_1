@@ -118,7 +118,7 @@ ansible --version
 >
 >Y también recordemos que el inventario puede estar en 3 formatos diferentes:
 >  - Inventario Dinámico.
->  - YAML o YML.
+>  - **YAML o YML. (la que vamos a utilizar)**
 >  - Texto plano, .ini.
 
 Entonces, ahora voy a crear un directorio en el que voy a poner el inventario.
@@ -126,5 +126,14 @@ Entonces, ahora voy a crear un directorio en el que voy a poner el inventario.
 
 https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
 
+Es importante saber, que hay variables:
+- ansible_host.
+- ansible_port.
+- ansible_user.
+- ansible_password. (ESTO NO SE UTILIZA NUNCA, JAMÁS).
+- ansible_ssh_private_key_file. (Lo que SI, vamos a utilizar).
 
+## 2.4.1 Crear el inventario en sí.
+
+El nombre del inventario se puede llamar de cualquier manera, yo lo voy a llamar:
 
