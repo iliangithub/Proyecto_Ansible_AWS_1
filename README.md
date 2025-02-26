@@ -117,7 +117,7 @@ Es importante saber, que hay variables:
 - ansible_password. (ESTO NO SE UTILIZA NUNCA, JAMÁS).
 - ansible_ssh_private_key_file. (Lo que SI, vamos a utilizar).
 
-## 1.4.1 Problema con el que me he topado, pérdida de las claves .pem .
+### 1.4.1 Problema con el que me he topado, pérdida de las claves .pem .
 
 En resumen, formatee el ordenador y me he quedado sin las claves. No hay forma de cambiar el par-clave de la instancia, tampoco podemos contactar con Amazon en caso de que se nos pierda. Es en teoría imposible.
 
