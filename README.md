@@ -244,3 +244,15 @@ Una vez montado, voy a copiar el fichero `./.ssh/authorized_keys` DEL VOLUMEN DE
 cp ./.ssh/authorized_keys /mnt/tmp/home/ubuntu/.ssh/authorized_keys
 ```
 
+Una vez hecho eso, voy a cerrar la sesión, `exit` y `exit`.
+
+![image](https://github.com/user-attachments/assets/5acf74d5-0590-4441-aba7-7c41719a9779)
+
+Apago la máquina, me vuelvo a volúmenes y voy a desaociar el volumen ese y lo voy a volver a asociar a su instancia correspondiente.
+
+**PASO 5**
+
+![image](https://github.com/user-attachments/assets/8e9e7c91-205d-42f7-b52a-66d3a3b0d7c5)
+
+**PASO 6**
+![image](https://github.com/user-attachments/assets/3e95acb3-963e-439e-a635-43322a1b5f8b)
