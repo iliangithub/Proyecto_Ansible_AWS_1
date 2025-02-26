@@ -153,3 +153,11 @@ Entonces, creo la máquina de rescate, sin más. Voy a también darle nombre a l
 
 ![image](https://github.com/user-attachments/assets/9206944c-5171-468d-86fd-556a8400878f)
 
+Cómo hemos dicho la máquina afectada tiene que estar apagada, y desasociamos ese volumen.
+
+Nos vamos a volúmenes:
+
+![image](https://github.com/user-attachments/assets/090c5933-0b78-410b-8e48-2ac717362c3b)
+
+![image](https://github.com/user-attachments/assets/a5ddaffe-2800-4bdd-85e3-2d70c59496fd)
+
