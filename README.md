@@ -198,6 +198,7 @@ sudo chmod 400 clientekey.pem
 
 ![image](https://github.com/user-attachments/assets/d658b846-4b68-4f46-96ce-a2acc5b7aeef)
 
+`-m ping` es el módulo ping, este viene por defecto instalado.
 
 ### 1.4.1 Opcional, que sea automático y no pida el fingerprint:
 
@@ -251,6 +252,232 @@ sudo chmod 400 clientekey.pem
 >![image](https://github.com/user-attachments/assets/4cffa81c-7b03-4d77-8781-f3ea01125c28)
 >
 >Guardamos y ya.
+
+## 1.5 Inventario 2, con varios Hosts y tareas más complejas:
+
+Voy a crear entonces, otra carpeta llamada ejercicio2:
+
+`cd ..` Ya que estabamos en `/ejercicio1`
+
+```
+cp -r ejercicio1 ejercicio2
+```
+
+Nos vamos al directorio de ejercicio2 y editamos el inventario:
+
+```
+all:
+  hosts:
+    servidores_de_ansible01:
+      ansible_host: 172.31.27.195
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientekey.pem
+    servidores_de_ansible02:
+      ansible_host: 172.31.26.9
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientekey.pem
+    servidores_de_ansible03:
+      ansible_host: 172.31.22.250
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientekey.pem
+```
+
+Los nombres de los Hosts, no significan nada, podemos ponerles lo que queramos, simplemente le he puesto "servidores_de_ansible0X" porque así estaban puestas las instancias, y para pues saber cual es cuál, pero que podemos usar el nombre que queramos.
+
+Así nos quedaría el inventario. Podríamos seguir ejecutando el comando uno por uno, host por host: `ansible servidores_de_ansible01 -m ping -i inventario`, `ansible servidores_de_ansible02 -m ping -i inventario`, pero queremos pues hacer una especie de grupo, por así decirlo para ejecutar para todos esos Host a la vez:
+
+```
+all:
+  hosts:
+    servidores_de_ansible01:
+      ansible_host: 172.31.27.195
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientekey.pem
+    servidores_de_ansible02:
+      ansible_host: 172.31.26.9
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientekey.pem
+    servidores_de_ansible03:
+      ansible_host: 172.31.22.250
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientekey.pem
+
+  children:
+    grupo_con_nombre_aleatorio:
+      hosts:
+        servidores_de_ansible01:
+        servidores_de_ansible02:
+    grupo_hamburguesa:
+      hosts:
+        servidores_de_ansible03:
+```
+
+Y ejecutamos el comando ping de antes, pero usando 1 de los grupos:
+
+```
+ansible grupo_con_nombre_aleatorio -m ping -i inventario
+```
+
+También podemos hacer un grupo de grupos.
+
+```
+all:
+  hosts:
+    servidores_de_ansible01:
+      ansible_host: 172.31.27.195
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientekey.pem
+    servidores_de_ansible02:
+      ansible_host: 172.31.26.9
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientekey.pem
+    servidores_de_ansible03:
+      ansible_host: 172.31.22.250
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientekey.pem
+
+  children:
+    grupo_con_nombre_aleatorio:
+      hosts:
+        servidores_de_ansible01:
+        servidores_de_ansible02:
+    grupo_hamburguesa:
+      hosts:
+        servidores_de_ansible03:
+    grupo_que_engloba_los_dos:
+      children:
+        grupo_con_nombre_aleatorio:
+        grupo_hamburguesa:
+
+```
+
+```
+ansible grupo_que_engloba_los_dos -m ping -i inventario
+```
+
+>[!IMPORTANT]
+>También tenemos la posibilidad de hacer un **`all`**:
+>
+>All está declarada al principio del todo en el fichero de inventario:
+>
+>```
+>ansible all -m ping -i inventario
+>```
+>
+>```
+>ansible '*' s -m ping -i inventario
+>```
+>
+>O también podemos hacer que sean todos los hosts que empiecen por una palabra:
+>
+>```
+>ansible 'web*' s -m ping -i inventario
+>```
+
+## 1.6 Inventario 3. Variables:
+
+Evidentemente, se utiliza para cuando se repiten las cosas, y ahorrar así líneas de código.
+Por ejemplo, antes se repite constantemente el `ansible_user: ec2-user` y `ansible_ssh_private_key_file: clientekey.pem `
+
+El resultado final sería algo así:
+
+```
+all:
+  vars:
+    ansible_user: ec2-user
+    ansible_ssh_private_key_file: clientekey.pem
+  hosts:
+    servidores_de_ansible01:
+      ansible_host: 172.31.27.195
+    servidores_de_ansible02:
+      ansible_host: 172.31.26.9
+    servidores_de_ansible03:
+      ansible_host: 172.31.22.250
+
+  children:
+    grupo_con_nombre_aleatorio:
+      hosts:
+        servidores_de_ansible01:
+        servidores_de_ansible02:
+    grupo_hamburguesa:
+      hosts:
+        servidores_de_ansible03:
+```
+
+Sin embargo, en Udemy, él define las varaibles A NIVEL DE GRUPO:
+
+```
+all:
+  hosts:
+    servidores_de_ansible01:
+      ansible_host: 172.31.27.195
+    servidores_de_ansible02:
+      ansible_host: 172.31.26.9
+    servidores_de_ansible03:
+      ansible_host: 172.31.22.250
+
+  children:
+    grupo_con_nombre_aleatorio:
+      hosts:
+        servidores_de_ansible01:
+        servidores_de_ansible02:
+    grupo_hamburguesa:
+      hosts:
+        servidores_de_ansible03:
+    grupo_que_engloba_los_dos:
+      children:
+        grupo_con_nombre_aleatorio:
+        grupo_hamburguesa:
+      vars:
+        ansible_user: ec2-user
+        ansible_ssh_private_key_file: clientekey.pem
+```
+
+De esta forma, estás asignando pues a nivel de grupo las variables y NO A NIVEL DE TODOS.
+**Lo cual es mejor y más seguro.**
+
+
+## 1.7 Comandos Ad-Hoc
+
+https://docs.ansible.com/ansible/latest/command_guide/intro_adhoc.html
+
+A veces, es necesario ejecutar comandos de forma rápida, y no escriberlo todo en la "playbook".
+
+Ping: Verifica la conectividad y configuración de Python en los hosts.
+```
+ansible all -m ping -i inventario
+```
+
+Command: Ejecuta comandos directamente sin pasar por un intérprete de shell.
+```
+ansible all -m command -a "uptime" -i inventario
+```
+
+Shell: Ejecuta comandos utilizando el shell remoto (útil para tareas que requieren características del shell).
+```
+ansible all -m shell -a "cat /etc/issue" -i inventario
+```
+
+Copy: Copia archivos desde el controlador hacia los hosts remotos.
+```
+ansible all -m copy -a "src=/ruta/origen dest=/ruta/destino" -i inventario
+```
+
+Yum o Apt: Administra paquetes en sistemas basados en RPM o DEB.
+```
+ansible all -m yum -a "name=nginx state=present" -i inventario
+```
+```
+ansible all -m apt -a "name=nginx state=present" -i inventario
+```
+
+Service: Administra servicios (iniciar, detener, reiniciar).
+```
+ansible all -m service -a "name=httpd state=restarted" -i inventario
+```
+
+
+## 1.8 Comandos Ad-Hoc
 
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
