@@ -192,56 +192,65 @@ Es importante que hagamos un `ls` para comprobar que el inventario se llame así
 
 ![image](https://github.com/user-attachments/assets/37a8d545-f446-467c-81c0-2681721850f7)
 
-- Para empezar, nos gustaría que sea realmente 100% automático y que no tengamos que interactuar o hacer algo. No que me pregunte si quier guardar el fingerprint.
-
-Para ello, deberíamos de modificar el fichero `/etc/ansible/ansible.cfg`
-Si hacemos un cat:
-
 ```
-ubuntu@ip-172-31-22-134:~$ sudo cat /etc/ansible/ansible.cfg
-# Since Ansible 2.12 (core):
-# To generate an example config file (a "disabled" one with all default settings, commented out):
-#               $ ansible-config init --disabled > ansible.cfg
-#
-# Also you can now have a more complete file by including existing plugins:
-# ansible-config init --disabled -t all > ansible.cfg
-
-# For previous versions of Ansible you can check for examples in the 'stable' branches of each version
-# Note that this file was always incomplete  and lagging changes to configuration settings
-
-# for example, for 2.9: https://github.com/ansible/ansible/blob/stable-2.9/examples/ansible.cfg
+sudo chmod 400 clientekey.pem
 ```
 
-Nos va a enseñar un comando interesante:
+![image](https://github.com/user-attachments/assets/d658b846-4b68-4f46-96ce-a2acc5b7aeef)
 
-`ansible-config init --disabled -t all > ansible.cfg`
 
-Este comando, va a crear otro fichero de configuración con todo deshabilitado por defecto.
+### 1.4.1 Opcional, que sea automático y no pida el fingerprint:
 
-Pero vamos a hacer una copia de seguridad del que está por defecto antes de hacer eso:
-```
-sudo -i
-```
-
-```
-mv /etc/ansible/ansible.cfg /etc/ansible/ansible.cfg.backup
-```
-
-```
-ansible-config init --disabled -t all > /etc/ansible/ansible.cfg
-```
-
-Una vez creado:
-
-Tenemos que buscar:
-
-![image](https://github.com/user-attachments/assets/edb4901f-9438-4176-94a2-a05b74aa26ef)
-
-le quitamos el `;` y ponemos false:
-
-![image](https://github.com/user-attachments/assets/4cffa81c-7b03-4d77-8781-f3ea01125c28)
-
-Guardamos y ya.
+>Para empezar, nos gustaría que sea realmente 100% automático y que no tengamos que interactuar o hacer algo. No que me pregunte si quier guardar el fingerprint.
+>
+>Para ello, deberíamos de modificar el fichero `/etc/ansible/ansible.cfg`
+>Si hacemos un cat:
+>
+>```
+>ubuntu@ip-172-31-22-134:~$ sudo cat /etc/ansible/ansible.cfg
+># Since Ansible 2.12 (core):
+># To generate an example config file (a "disabled" one with all default settings, commented >out):
+>#               $ ansible-config init --disabled > ansible.cfg
+>#
+># Also you can now have a more complete file by including existing plugins:
+># ansible-config init --disabled -t all > ansible.cfg
+>
+># For previous versions of Ansible you can check for examples in the 'stable' branches of each version
+># Note that this file was always incomplete  and lagging changes to configuration settings
+>
+># for example, for 2.9: https://github.com/ansible/ansible/blob/stable-2.9/examples/ansible.cfg
+>```
+>
+>Nos va a enseñar un comando interesante:
+>
+>`ansible-config init --disabled -t all > ansible.cfg`
+>
+>Este comando, va a crear otro fichero de configuración con todo deshabilitado por defecto.
+>
+>Pero vamos a hacer una copia de seguridad del que está por defecto antes de hacer eso:
+>```
+>sudo -i
+>```
+>
+>```
+>mv /etc/ansible/ansible.cfg /etc/ansible/ansible.cfg.backup
+>```
+>
+>```
+>ansible-config init --disabled -t all > /etc/ansible/ansible.cfg
+>```
+>
+>Una vez creado:
+>
+>Tenemos que buscar:
+>
+>![image](https://github.com/user-attachments/assets/edb4901f-9438-4176-94a2-a05b74aa26ef)
+>
+>le quitamos el `;` y ponemos false:
+>
+>![image](https://github.com/user-attachments/assets/4cffa81c-7b03-4d77-8781-f3ea01125c28)
+>
+>Guardamos y ya.
 
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
