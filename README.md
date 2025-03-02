@@ -441,7 +441,7 @@ De esta forma, estás asignando pues a nivel de grupo las variables y NO A NIVEL
 
 https://docs.ansible.com/ansible/latest/command_guide/intro_adhoc.html
 
-A veces, es necesario ejecutar comandos de forma rápida, y no escriberlo todo en la "playbook".
+A veces, es necesario ejecutar comandos de forma rápida, y no escribirlo todo en la "playbook".
 
 Ping: Verifica la conectividad y configuración de Python en los hosts.
 ```
