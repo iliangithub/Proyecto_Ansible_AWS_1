@@ -243,6 +243,8 @@ le quitamos el `;` y ponemos false:
 
 ![image](https://github.com/user-attachments/assets/4cffa81c-7b03-4d77-8781-f3ea01125c28)
 
+Guardamos y ya.
+
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
 En resumen, formatee el ordenador y me he quedado sin las claves. No hay forma de cambiar el par-clave de la instancia, tampoco podemos contactar con Amazon en caso de que se nos pierda. Es en teoría imposible.
