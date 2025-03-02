@@ -174,9 +174,74 @@ Listo, el cliente tiene que estar encendido.
 ansible servidor_de_ansible01 -m ping
 ```
 
-Tenemos el primer error:
+**Tenemos el primer error:**
 
 ![image](https://github.com/user-attachments/assets/a4b67499-1804-4b1f-9ab0-6a0b14ecb3bd)
+
+>[!TIP]
+>https://kodekloud.com/community/t/warning-provided-hosts-list-is-empty-only-localhost-is-available-note-that-the-implicit-localhost-does-not-match-all/12046/2
+>
+>You need to mention inventory file. Otherwise it will find in the default location /etc/ansible/ which is empty.
+>
+
+```
+ansible servidores_de_ansible01 -m ping -i inventario
+```
+
+Es importante que hagamos un `ls` para comprobar que el inventario se llame así, que  si no encontrará el default que está vacío. Y haciendo un `cat inventario` para ver que están escritos correctamente el nombre de la key.pem y su IP privada.
+
+**Tenemos el segundo error:**
+
+![image](https://github.com/user-attachments/assets/37a8d545-f446-467c-81c0-2681721850f7)
+
+- Para empezar, nos gustaría que sea realmente 100% automático y que no tengamos que interactuar o hacer algo. No que me pregunte si quier guardar el fingerprint.
+
+Para ello, deberíamos de modificar el fichero `/etc/ansible/ansible.cfg`
+Si hacemos un cat:
+
+```
+ubuntu@ip-172-31-22-134:~$ sudo cat /etc/ansible/ansible.cfg
+# Since Ansible 2.12 (core):
+# To generate an example config file (a "disabled" one with all default settings, commented out):
+#               $ ansible-config init --disabled > ansible.cfg
+#
+# Also you can now have a more complete file by including existing plugins:
+# ansible-config init --disabled -t all > ansible.cfg
+
+# For previous versions of Ansible you can check for examples in the 'stable' branches of each version
+# Note that this file was always incomplete  and lagging changes to configuration settings
+
+# for example, for 2.9: https://github.com/ansible/ansible/blob/stable-2.9/examples/ansible.cfg
+```
+
+Nos va a enseñar un comando interesante:
+
+`ansible-config init --disabled -t all > ansible.cfg`
+
+Este comando, va a crear otro fichero de configuración con todo deshabilitado por defecto.
+
+Pero vamos a hacer una copia de seguridad del que está por defecto antes de hacer eso:
+```
+sudo -i
+```
+
+```
+mv /etc/ansible/ansible.cfg /etc/ansible/ansible.cfg.backup
+```
+
+```
+ansible-config init --disabled -t all > /etc/ansible/ansible.cfg
+```
+
+Una vez creado:
+
+Tenemos que buscar:
+
+![image](https://github.com/user-attachments/assets/edb4901f-9438-4176-94a2-a05b74aa26ef)
+
+le quitamos el `;` y ponemos false:
+
+![image](https://github.com/user-attachments/assets/4cffa81c-7b03-4d77-8781-f3ea01125c28)
 
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
