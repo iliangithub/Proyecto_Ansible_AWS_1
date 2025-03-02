@@ -170,9 +170,7 @@ para que se inserte todo. Para entrar en modo insertar, lo primero que haremos e
 
 Listo, el cliente tiene que estar encendido.
 
-```
-ansible servidor_de_ansible01 -m ping
-```
+- `ansible servidor_de_ansible01 -m ping`
 
 **Tenemos el primer error:**
 
