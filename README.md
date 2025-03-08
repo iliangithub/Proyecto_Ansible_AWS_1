@@ -809,6 +809,38 @@ Para ejecutarlo:
 ansible-playbook -i inventario nombre_playbook.yaml
 ```
 
+>[!WARNING]
+>Pero, recordemos, que yo dije de NO usar, como en los Ad Hocs los módulos de forma directa, como `-m yum`, si no, utilizar más bien: `-m ansible.builtin.yum`.
+> ```
+> ---
+>- name: Configurar servidor web
+>  hosts: grupo_con_nombre_aleatorio
+>  become: yes  # Elevar privilegios
+>  tasks:
+>    - name: Instalar Apache (httpd)
+>      ansible.builtin.yum:
+>        name: httpd
+>        state: latest
+>
+>    - name: Desplegar configuración de Apache
+>      ansible.builtin.copy:
+>        src: file/httpd.conf  # Asegúrate de que este archivo exista
+>        dest: /etc/httpd/httpd.conf
+>        owner: root
+>        group: root
+>        mode: '0644'
+>
+>- name: Configurar base de datos
+>  hosts: base_de_datos
+>  become: yes  # Necesario para instalar paquetes
+>  tasks:
+>    - name: Instalar PostgreSQL
+>      ansible.builtin.yum:
+>        name: postgresql
+>        state: latest
+>
+> ```
+
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
 En resumen, formatee el ordenador y me he quedado sin las claves. No hay forma de cambiar el par-clave de la instancia, tampoco podemos contactar con Amazon en caso de que se nos pierda. Es en teoría imposible.
