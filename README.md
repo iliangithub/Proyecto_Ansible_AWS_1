@@ -441,43 +441,23 @@ De esta forma, estás asignando pues a nivel de grupo las variables y NO A NIVEL
 
 https://docs.ansible.com/ansible/latest/command_guide/intro_adhoc.html
 
-A veces, es necesario ejecutar comandos de forma rápida, y no escribirlo todo en la "playbook".
+Básicamente, los comandos Ad-Hoc son formas de interactuar con las máquinas a través de comandos, pero sin tener que recurrir al playbook. Se utiliza para hacer comandos simples y rápidos.
 
-Ping: Verifica la conectividad y configuración de Python en los hosts.
-```
-ansible all -m ping -i inventario
-```
+### 1.7.1 Explicación profunda de como funcionan los comandos en Ansible.
 
-Command: Ejecuta comandos directamente sin pasar por un intérprete de shell.
-```
-ansible all -m command -a "uptime" -i inventario
-```
+1. `ansible` (Para hacer entender al intérprete de comandos de que comandos estamos hablando, es obligatorio.
+2. `[host]` (Donde se van a ejecutar o aplicar los comandos).
+  - `all`
+  - `*`
+  - `grupo_de_hosts`
+  - `el_nombre_de_un_host`
+  - `la ip privada de un host`
+  - `grupo_de_grupos`
+### 1.7.2 Utilizar el "sudo" o escalar privilegios.
 
-Shell: Ejecuta comandos utilizando el shell remoto (útil para tareas que requieren características del shell).
-```
-ansible all -m shell -a "cat /etc/issue" -i inventario
-```
+ansible all -m ansible.buildin.yum -a "name=httpd state=present" -i inventoy
 
-Copy: Copia archivos desde el controlador hacia los hosts remotos.
-```
-ansible all -m copy -a "src=/ruta/origen dest=/ruta/destino" -i inventario
-```
-
-Yum o Apt: Administra paquetes en sistemas basados en RPM o DEB.
-```
-ansible all -m yum -a "name=nginx state=present" -i inventario
-```
-```
-ansible all -m apt -a "name=nginx state=present" -i inventario
-```
-
-Service: Administra servicios (iniciar, detener, reiniciar).
-```
-ansible all -m service -a "name=httpd state=restarted" -i inventario
-```
-
-
-## 1.8 Comandos Ad-Hoc
+## 1.8 Playbook & Módulos.
 
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
