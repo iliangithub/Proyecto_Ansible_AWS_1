@@ -449,10 +449,193 @@ Básicamente, los comandos Ad-Hoc son formas de interactuar con las máquinas a 
 2. `[host]` (Donde se van a ejecutar o aplicar los comandos).
   - `all`
   - `*`
-  - `grupo_de_hosts`
-  - `el_nombre_de_un_host`
-  - `la ip privada de un host`
-  - `grupo_de_grupos`
+  - `grupo_de_hosts`.
+  - `el_nombre_de_un_host`.
+  - `la ip privada de un host`.
+  - `grupo_de_grupos`.
+
+3. `-m` (módulo).
+4. `-i` (inventario).
+
+### 1.7.2 ¿Qué es un módulo?
+
+Si ejecutamos este comando, `ansible-doc -l` nos listará todos los módulos disponibles...
+Son muchísimos.
+
+En cualquier caso, un módulo es una pieza de código, con una instrucción que ejecuta directamente en el terminal del sistema.
+
+Eso quiere decir, que si yo hago un `ansible -m ping -i inventario`.
+Va a ejecutar a los Hosts del inventario, el comando o lo que tenga que hacer del módulo ping, lo que esté escrito en ese módulo y las instrucciones que sean dentro.
+
+Es decir, si yo decido consultar **EL CONTENIDO DEL MÓDULO PING, me encuentro con esto:**
+
+```
+#!/usr/bin/python
+from ansible.module_utils.basic import AnsibleModule
+
+def main():
+    module = AnsibleModule(argument_spec={}, supports_check_mode=True)
+    result = {"ping": "pong"}
+    module.exit_json(**result)
+
+if __name__ == '__main__':
+    main()
+```
+
+Esto es lo que realmente está ejecutando por dentro.
+Tenemos 2 opciones para ver el contenido de dentro:
+
+-`ansible-doc -t module ping`
+
+Y te imprime esto:
+
+```
+> MODULE ansible.builtin.ping (/usr/lib/python3/dist-packages/ansible/modules/p>
+
+  A trivial test module, this module always returns `pong' on
+  successful contact. It does not make sense in playbooks, but it is
+  useful from `/usr/bin/ansible' to verify the ability to
+  login and that a usable Python is configured.
+  This is NOT ICMP ping, this is just a trivial test module that
+  requires Python on the remote-node.
+  For Windows targets, use the ansible.windows.win_ping
+  module instead.
+  For Network targets, use the ansible.netcommon.net_ping
+  module instead.
+
+OPTIONS (red indicates it is required):
+
+   data    Data to return for the `ping' return value.
+           If this parameter is set to `crash', the module will cause
+           an exception.
+        default: pong
+        type: str
+
+ATTRIBUTES:
+
+        check_mode:
+        description: Can run in check_mode and return changed status prediction>
+          target, if not supported the action will be skipped.
+        support: full
+
+        diff_mode:
+        description: Will return details on what has changed (or possibly needs>
+          check_mode), when in diff mode
+        support: none
+
+        platform:
+        description: Target OS/families that can be operated against
+        platforms: posix
+        support: N/A
+```
+
+-`nano /usr/lib/python3.*/site-packages/ansible/modules/system/ping.py`
+
+
+Estos por ejemplo, son del **AWS Collection**. Si no los tuviera, y necesitara instalarlos:
+`ansible-galaxy collection install amazon.aws` y si por algún casual los usara en mi playbook, necesito importar la colección.
+
+```
+collections:
+  - amazon.aws
+```
+
+```
+amazon.aws.autoscaling_group                                                   >
+amazon.aws.autoscaling_group_info                                              >
+amazon.aws.aws_az_info                                                         >
+amazon.aws.aws_caller_info                                                     >
+amazon.aws.aws_region_info                                                     >
+amazon.aws.backup_plan                                                         >
+amazon.aws.backup_plan_info                                                    >
+amazon.aws.backup_restore_job_info                                             >
+amazon.aws.backup_selection                                                    >
+amazon.aws.backup_selection_info                                               >
+amazon.aws.backup_tag                                                          >
+amazon.aws.backup_tag_info                                                     >
+amazon.aws.backup_vault                                                        >
+amazon.aws.backup_vault_info                                                   >
+amazon.aws.cloudformation                                                      >
+amazon.aws.cloudformation_info                                                 >
+amazon.aws.cloudtrail                                                          >
+amazon.aws.cloudtrail_info                                                     >
+amazon.aws.cloudwatch_metric_alarm                                             >
+amazon.aws.cloudwatch_metric_alarm_info                                        >
+amazon.aws.cloudwatchevent_rule                                                >
+amazon.aws.cloudwatchlogs_log_group                                            >
+amazon.aws.cloudwatchlogs_log_group_info                                       >
+amazon.aws.cloudwatchlogs_log_group_metric_filter                              >
+amazon.aws.ec2_ami                                                             >
+amazon.aws.ec2_ami_info                                                        >
+amazon.aws.ec2_eip                                                             >
+amazon.aws.ec2_eip_info                                                        >
+amazon.aws.ec2_eni                                                             >
+amazon.aws.ec2_eni_info                                                        >
+amazon.aws.ec2_import_image                                                    >
+amazon.aws.ec2_import_image_info                                               >
+amazon.aws.ec2_instance                                                        >
+amazon.aws.ec2_instance_info                                                   >
+amazon.aws.ec2_key                                                             >
+amazon.aws.ec2_key_info                                                        >
+amazon.aws.ec2_metadata_facts                                                  >
+amazon.aws.ec2_security_group                                                  >
+amazon.aws.ec2_security_group_info                                             >
+amazon.aws.ec2_snapshot                                                        >
+amazon.aws.ec2_snapshot_info                                                   >
+amazon.aws.ec2_spot_instance                                                   >
+amazon.aws.ec2_spot_instance_info                                              >
+amazon.aws.ec2_tag                                                             >
+amazon.aws.ec2_tag_info                                                        >
+amazon.aws.ec2_vol                                                             >
+amazon.aws.ec2_vol_info                                                        >
+amazon.aws.ec2_vpc_dhcp_option                                                 >
+amazon.aws.ec2_vpc_dhcp_option_info                                            >
+amazon.aws.ec2_vpc_endpoint                                                    >
+amazon.aws.ec2_vpc_endpoint_info                                               >
+amazon.aws.ec2_vpc_endpoint_service_info                                       >
+amazon.aws.ec2_vpc_igw                                                         >
+amazon.aws.ec2_vpc_igw_info                                                    >
+amazon.aws.ec2_vpc_nat_gateway                                                 >
+amazon.aws.ec2_vpc_nat_gateway_info                                            >
+amazon.aws.ec2_vpc_net
+```
+
+Y también tenemos la colección de ansible que siempre te viene por defecto sin importar que versión instales.
+
+```
+ansible.builtin.add_host                                                       >
+ansible.builtin.apt                                                            >
+ansible.builtin.apt_key                                                        >
+ansible.builtin.apt_repository                                                 >
+ansible.builtin.assemble                                                       >
+ansible.builtin.assert                                                         >
+ansible.builtin.async_status                                                   >
+ansible.builtin.blockinfile                                                    >
+ansible.builtin.command                                                        >
+ansible.builtin.copy                                                           >
+ansible.builtin.cron                                                           >
+ansible.builtin.deb822_repository                                              >
+ansible.builtin.debconf                                                        >
+ansible.builtin.debug                                                          >
+ansible.builtin.dnf                                                            >
+ansible.builtin.dnf5                                                           >
+ansible.builtin.dpkg_selections                                                >
+ansible.builtin.expect                                                         >
+ansible.builtin.fail                                                           >
+ansible.builtin.fetch                                                          >
+ansible.builtin.file                                                           >
+ansible.builtin.find                                                           >
+ansible.builtin.gather_facts                                                   >
+ansible.builtin.get_url                                                        >
+ansible.builtin.getent                                                         >
+ansible.builtin.git                                                            >
+ansible.builtin.group                                                          >
+ansible.builtin.group_by                                                       >
+ansible.builtin.hostname                                                       >
+ansible.builtin.import_playbook                                                >
+ansible.builtin.import_role                                                    >
+ansible.builtin.import_tasks
+```
 ### 1.7.2 Utilizar el "sudo" o escalar privilegios.
 
 ansible all -m ansible.buildin.yum -a "name=httpd state=present" -i inventoy
