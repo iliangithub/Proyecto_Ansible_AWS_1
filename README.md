@@ -441,7 +441,7 @@ De esta forma, estás asignando pues a nivel de grupo las variables y NO A NIVEL
 
 https://docs.ansible.com/ansible/latest/command_guide/intro_adhoc.html
 
-Básicamente, los comandos Ad-Hoc son formas de interactuar con las máquinas a través de comandos, pero sin tener que recurrir al playbook. Se utiliza para hacer comandos simples y rápidos.
+Básicamente, los comandos Ad-Hoc son formas de interactuar con las máquinas a través de comandos, **pero sin tener que recurrir al playbook**. Se utiliza para hacer comandos simples y rápidos.
 
 ### 1.7.1 Explicación profunda de como funcionan los comandos en Ansible.
 
@@ -456,6 +456,11 @@ Básicamente, los comandos Ad-Hoc son formas de interactuar con las máquinas a 
 
 3. `-m` (módulo).
 4. `-i` (inventario).
+
+5. `-a`
+*A veces, podemos encontrar también el "-a" le indica a Ansible que le pases argumentos adicionales al módulo que estás utilizando. Esos argumentos pueden ser opciones o parámetros específicos que el módulo necesita para funcionar.*
+
+por ejemplo. `ansible all -m shell -a "ping -c 4 google.com -i inventario"`
 
 ### 1.7.2 ¿Qué es un módulo?
 
@@ -652,11 +657,108 @@ ansible all -m ansible.builtin.ping
 **Se usa el primero porque es más corto** y literalmente se utiliza en comandos.
 **SIN EMBARGO** en playbooks, se utiliza `ansible.builtin.ping`.
 
-### 1.7.3 Utilizar el "sudo" o escalar privilegios.
+### 1.7.3 ¿Y si quiero realmente ejecutar comandos?
 
-ansible all -m ansible.buildin.yum -a "name=httpd state=present" -i inventoy
+Espero que haya quedado claro que anteriormente, el módulo ping, precisamente muy ping no era, ese módulo, ejecutama un ping, hacia los servidores, no que los servidores ejecuten pings hacia el exterior.
 
-## 1.8 Playbook & Módulos.
+```
+ansible all -m command -a "ping -c 4 google.com" -i inventario
+```
+
+### 1.7.4 El ejercicio en sí.
+
+Voy a instalar httpd, A.K.A apache2 a las máquinas:
+
+```
+ansible grupo_con_nombre_aleatorio -m ansible.builtin.yum -a "name=httpd state=present" -i inventario
+```
+
+Y nos da un error de que no somos usuario root:
+
+```
+servidores_de_ansible02 | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "msg": "This command has to be run under the root user.",
+    "results": []
+}
+```
+
+recordemos, si miramos el inventario que el usuario en efecto, no es root, `es ec2-user`.
+No vamos a modificar eso, pero ese es el motivo, para solucionarlo tenemos que usar --become.
+
+```
+ansible grupo_con_nombre_aleatorio -m ansible.builtin.yum -a "name=httpd state=present" -i inventario --become
+```
+
+Una vez lo ejecute, el output:
+
+```
+servidores_de_ansible01 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": true,
+    "msg": "",
+    "rc": 0,
+    "results": [
+        "Installed: httpd-tools-2.4.62-4.el9.x86_64",
+        "Installed: apr-1.7.0-12.el9.x86_64",
+        "Installed: centos-logos-httpd-90.8-2.el9.noarch",
+        "Installed: mailcap-2.1.49-5.el9.noarch",
+        "Installed: httpd-2.4.62-4.el9.x86_64",
+        "Installed: mod_http2-2.0.26-4.el9.x86_64",
+        "Installed: httpd-core-2.4.62-4.el9.x86_64",
+        "Installed: apr-util-1.6.1-23.el9.x86_64",
+        "Installed: apr-util-bdb-1.6.1-23.el9.x86_64",
+        "Installed: httpd-filesystem-2.4.62-4.el9.noarch",
+        "Installed: mod_lua-2.4.62-4.el9.x86_64",
+        "Installed: apr-util-openssl-1.6.1-23.el9.x86_64"
+    ]
+}
+```
+
+Ha funcionado.
+
+Si vuelvo a repetir el comando, me lo devuelve en verde:
+
+```
+servidores_de_ansible01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "msg": "Nothing to do",
+    "rc": 0,
+    "results": []
+}
+[WARNING]: Platform linux on host servidores_de_ansible02 is using the
+discovered Python interpreter at /usr/bin/python3.9, but future installation of
+another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+servidores_de_ansible02 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "msg": "Nothing to do",
+    "rc": 0,
+    "results": []
+}
+```
+
+Por último, lo que yo podría hacer es hacer un "copy" de forma local, y pegarlo en el /var/www/html/index.html"
+
+```
+ansible grupo_con_nombre_aleatorio -m ansible.builtin.copy -a "src=index.html dest=/var/www/html/index.html" -i inventario --become
+```
+
+## 1.8 Playbook & Módulos. (YAML).
+
+
 
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
