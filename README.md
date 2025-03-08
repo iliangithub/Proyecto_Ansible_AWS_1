@@ -485,7 +485,7 @@ if __name__ == '__main__':
 Esto es lo que realmente está ejecutando por dentro.
 Tenemos 2 opciones para ver el contenido de dentro:
 
--`ansible-doc -t module ping`
+- `ansible-doc -t module ping`
 
 Y te imprime esto:
 
@@ -529,7 +529,7 @@ ATTRIBUTES:
         support: N/A
 ```
 
--`nano /usr/lib/python3.*/site-packages/ansible/modules/system/ping.py`
+- `nano /usr/lib/python3.*/site-packages/ansible/modules/system/ping.py`
 
 
 Estos por ejemplo, son del **AWS Collection**. Si no los tuviera, y necesitara instalarlos:
@@ -636,7 +636,23 @@ ansible.builtin.import_playbook                                                >
 ansible.builtin.import_role                                                    >
 ansible.builtin.import_tasks
 ```
-### 1.7.2 Utilizar el "sudo" o escalar privilegios.
+
+### 1.7.2 ¿Porqué se utiliza "-m ping" en vez de: "ansible.builtin.ping"?
+
+Entonces, puedes usar tanto:
+
+```
+ansible all -m ping
+```
+
+```
+ansible all -m ansible.builtin.ping
+```
+
+**Se usa el primero porque es más corto** y literalmente se utiliza en comandos.
+**SIN EMBARGO** en playbooks, se utiliza `ansible.builtin.ping`.
+
+### 1.7.3 Utilizar el "sudo" o escalar privilegios.
 
 ansible all -m ansible.buildin.yum -a "name=httpd state=present" -i inventoy
 
