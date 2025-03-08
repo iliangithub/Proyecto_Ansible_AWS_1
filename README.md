@@ -756,9 +756,58 @@ Por último, lo que yo podría hacer es hacer un "copy" de forma local, y pegarl
 ansible grupo_con_nombre_aleatorio -m ansible.builtin.copy -a "src=index.html dest=/var/www/html/index.html" -i inventario --become
 ```
 
-## 1.8 Playbook & Módulos. (YAML).
+## 1.8 Playbook & Módulos. (YAML o YML).
 
+Para crear el Playbook:
 
+En Ansible se puede crear un playbook y llamarlo como queramos, siempre y cuando usemos la extensión .yml o .yaml
+
+Importante, a cada acción se le llama play, y pues playbook a la lista de plays.
+
+```
+- hosts: grupo_con_nombre_aleatorio
+  tasks:
+    - yum:
+        name: httpd
+        state: present
+```
+
+Si quisiera hacer más tareas:
+
+```
+---
+- name: Configurar servidor web
+  hosts: grupo_con_nombre_aleatorio
+  become: yes  # Elevar privilegios, root
+  tasks:
+    - name: Instalar Apache (httpd)
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Desplegar configuración de Apache
+      copy:
+        src: file/httpd.conf  # Asegúrate de que este archivo exista
+        dest: /etc/httpd/httpd.conf
+        owner: root
+        group: root
+        mode: '0644'
+
+- name: Configurar base de datos
+  hosts: base_de_datos
+  become: yes  # Necesario para instalar paquetes
+  tasks:
+    - name: Instalar PostgreSQL
+      yum:
+        name: postgresql
+        state: latest
+```
+
+Para ejecutarlo:
+
+```
+ansible-playbook -i inventario nombre_playbook.yaml
+```
 
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
