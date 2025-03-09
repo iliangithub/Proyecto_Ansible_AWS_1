@@ -841,6 +841,65 @@ ansible-playbook -i inventario nombre_playbook.yaml
 >
 > ```
 
+## 1.9 Módulos, encontrarlos, usarlos y solucionar problemas.
+
+https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html
+
+Primero vamos a ver el Module Index, y aquí están todos, son clasificados por secciones, cloud, copy, file, archive, etc...
+
+Por ej, me busco el del módulo copiar y lo pego:
+
+![image](https://github.com/user-attachments/assets/4b29b297-479f-477d-a5c3-a49a5c6cd263)
+
+Para modificarlo o añadir cosas, nos vamos a parámetros en la página web:
+
+![image](https://github.com/user-attachments/assets/3155fda3-983e-4e98-afe3-d2f31fc38688)
+
+Y como podemos ver en parámetros, hay algunos que son obligatorios:
+
+![image](https://github.com/user-attachments/assets/3a830901-d275-452c-b5e2-c3aaca5538cd)
+
+Este es el único obligatorio, por raro que parezca "src" no es obligatorio, por el simple hecho de que hay otras formas de copiar, podríamos buscar por el contenido del archivo "content" o que ponga el contenido directamente en el desitno.
+
+### 1.9.1 Dependencias módulos.
+
+Algunos módulos tienen dependencias, sobre todo los que son de Python. Por ejemplo:
+
+![image](https://github.com/user-attachments/assets/ff8b24b5-6115-4c14-b681-edcce2c56333)
+
+La de MySQL, https://docs.ansible.com/ansible/2.9/modules/mysql_db_module.html#mysql-db-module :
+
+Si ejecuto el playbook:
+
+*MySQL module is required: for Python 2.7 either PyMySQL, or MySQL-python*
+
+Si hubieramos leido la documentación bien, aparecen requisitos:
+
+![image](https://github.com/user-attachments/assets/ac89fa76-9e59-426a-b0c5-d673d91b478f)
+
+Entonces, tenemos que ir a la máquina CentOS, e buscar los paquetes:
+
+```
+yum search python | grep -i mysql
+```
+
+```
+ python3-PyMySQL
+```
+
+Entonces, una vez sepamos la dependencia, pues lo vamos a poner en el playbook para que se instale.
+
+Luego nos va a dar otro error y es que no sabrá a donde conectarse.
+
+y esto lo ponemos en el playbook:
+
+```
+login_unix_socket: /var/lib/mysql/mysql.sock
+```
+## 1.10 Ansible Configuration.
+
+
+
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
 En resumen, formatee el ordenador y me he quedado sin las claves. No hay forma de cambiar el par-clave de la instancia, tampoco podemos contactar con Amazon en caso de que se nos pierda. Es en teoría imposible.
