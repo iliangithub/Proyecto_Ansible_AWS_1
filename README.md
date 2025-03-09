@@ -898,7 +898,9 @@ login_unix_socket: /var/lib/mysql/mysql.sock
 ```
 ## 1.10 Ansible Configuration.
 
+## 1.11 Handler.
 
+## 1.12 Roles.
 
 # 2.0 (OFF TOPIC) Problema con el que me he topado, pérdida de las claves .pem .
 
