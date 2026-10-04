@@ -2,6 +2,9 @@
 > Este repositorio fue creado por primera vez el 15 de enero de 2025.
 >
 > ![Captura de la ultima modificacion del repositorio](IMG/Captura%20de%20pantalla%202026-10-04%20235256.png)
+> 
+> Se decidió borrar el anterior repositorio y subirlo en este para censurar datos, IDs, además de que aparecían en el historial de commits.
+> 
 
 # 1.0 El proyecto.
 
